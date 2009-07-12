@@ -1,5 +1,6 @@
-Revision history for agram
+Revision history for Perl extension agram.
 
-0.01    Date/time
-        First version, released on an unsuspecting world.
+0.8.5  Sun Jul 12 11:39:25 2009
+	- original version; created by h2xs 1.23 with options
+		-AX -n agram --version=0.8.5
 

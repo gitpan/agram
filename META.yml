@@ -1,11 +1,10 @@
 # http://module-build.sourceforge.net/META-spec.html
 #XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
 name:         agram
-version:      0.8.5
+version:      0.8.6
 version_from: agram.pl
 installdirs:  site
 requires:
-    Test::More:                    0
 
 distribution_type: module
 generated_by: ExtUtils::MakeMaker version 6.30

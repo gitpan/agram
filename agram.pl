@@ -8,7 +8,7 @@ use List::MoreUtils qw( uniq all );
 use Carp            qw( croak    );
 use Fcntl           qw( SEEK_SET );
 
-our $VERSION = '0.8.5';
+our $VERSION = '0.8.6';
 
 my $DEFAULT_DICTIONARY = "/usr/share/dict/words";
 my $USAGE = <<"USAGE";
@@ -181,26 +181,26 @@ This documentation refers to agram version 0.85.
 
 =head1 USAGE
 
-agram -s scare
-> scare 5: carse caser ceras scare scrae
+  agram -s scare
+  scare 5: carse caser ceras scare scrae
 
-agram -s scare -d /custom/dictionary/file
+  agram -s scare -d /custom/dictionary/file
 
-agram -s scare -b
-> scare 21: accerse accresce ascare caress caresser carse caser ceras crease creaser reaccess recase recrease resaca scarce scare scarer scarrer scrae searce searcer
+  agram -s scare -b
+  scare 21: accerse accresce ascare caress caresser carse caser ceras crease creaser reaccess recase recrease resaca scarce scare scarer scarrer scrae searce searcer
 
-agram -c pear pare
-> yes
+  agram -c pear pare
+  yes
 
 =head1 REQUIRED ARGUMENTS
 
 =over 4
 
-=item -s word(s)
+=item B<-s word(s)>
 
 Specify one or more words to search for. Will find every anagram of each word and print them out.
 
-=item -c words
+=item B<-c words>
 
 Specify two words to compare. Prints C<yes> if they are anagrams or C<no> if they aren't. If this option is specified it will take precedence over -s, and the words given after -s will be ignored.
 
@@ -210,21 +210,21 @@ Specify two words to compare. Prints C<yes> if they are anagrams or C<no> if the
 
 =over 4
 
-=item -d
+=item B<-d>
 
 Invoking agram with the -d option allows the user to set a custom dictionary file for the program to search through. The dictionary file will default to /usr/share/dict/words.
 
-=item -b
+=item B<-b>
 
 Invoking agram with the -b option ignores the length of the search word and the words in the dictionary file, instead matching simply by their base letters. 
 In other words, when used with the word B<pear>, any word that consists only of the letters B<a>, B<e>, B<p>, and B<r> will be matched. 
 This is considerably slower than a normal anagram match because agram must consider every single word rather than skipping based on length, but will be fixed in the future.
 
-=item -o
+=item B<-o>
 
 Invoking agram with the -o option returns only the first anagram found. It can be used with any of the search flags.
 
-=item -q
+=item B<-q>
 
 Quiet mode - doesn't print status messages as it is searching the dictionary file. This option is primarily intended for feeding the output of this program to another program. The output format is:
 <word> <number of anagrams found>: <space separated list of anagrams>
@@ -239,15 +239,15 @@ agram is an anagrammer, or a program that finds the anagrams of words given to i
 
 =over 4
 
-=item Usage message
+=item B<Usage message>
 
-Either agram was invoked with the -h or --help option, or you forgot to provide either words to compare (see L<-c>) or words to search (seeL<-s>)!
+You forgot to provide either words to compare (see B<-c>) or words to search (seeB<-s>)!
 
-=item Can't find anagrams of single letter words
+=item B<Can't find anagrams of single letter words>
 
 Every word you provided for -c or -s had one letter or less, meaning there are no anagrams.
 
-=item Can't open dictionary_file %s
+=item B<Can't open dictionary_file %s>
 
 The dictionary file that was provided or the default one was not able to be opened for reading. Make sure you have the pathname correct and that this script has read permission.
 
@@ -255,20 +255,20 @@ The dictionary file that was provided or the default one was not able to be open
 
 =head1 DEPENDENCIES
 
-Requires version and List::MoreUtils.
+Requires List::MoreUtils.
 
 =head1 BUGS AND LIMITATIONS
 
 agram can't piece together complex new sentences or phrases based on seed words. Unfortunately, agram cannot speak english and therefore leaves the really clever anagram stuff up to the humans. :(
 
-A small bug at the moment is the inability to group command line flags. For some reason, some things like "-ob" are triggering an "unknown option: -ob" warning rather than parsing as separate options. This is something wrong with Getopt::Long. So for now if you want to use -o and -b or any other combination you have to do it the long way:
+Note that you can't bundle single letter command line flags. I'm keeping it like this so that multiple words can still be specified under one -s or -c flag.
 C<agram -s scare -o -b>
 
 =head1 TODO
 
 =over 4
 
-=item Optimize
+=item B<Optimize>
 
 Optimize, optimize, optimize, optimize. Especially when running under the -b flag.
 
